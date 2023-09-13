@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title layout:title-pattern="$LAYOUT_TITLE"
+           th:text="${#strings.defaultString(#themes.code('cas.theme.name'), 'UH Login')}">
+    </title>
+
+    <!--/* Core CAS CSS */-->
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize.css" th:href="@{#{webjars.normalize.css}}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-grid.min.css" th:href="@{#{webjars.bootstrap-grid.css}}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/material-components-web.min.css" th:href="@{#{webjars.material-components.css}}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/mdi-font.css" th:href="@{#{webjars.mdi-font.css}}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/cas.css" th:href="@{${#themes.code('cas.standard.css.file')}}"/>
+
+    <link rel="shortcut icon"
+          th:href="@{${#strings.defaultString(#themes.code('cas.favicon.file'), '/favicon.ico')}}" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.22.5/minified.js"
+            integrity="sha512-PpRtR+C65psqVFRqf7T75qlLWA/yvq/c4r5+J7rB/p2Iu9Zh8gIwYsbjK+H7V66dcj2NsFj3LVlLG6VubIVgsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+<script th:replace="fragments/scripts" />
+
+<div class="mdc-drawer-scrim"></div>
+
+<div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust d-flex justify-content-center">
+    
+    <main role="main" id="main-content" class="container-lg px-0">
+    
+        <div th:replace="fragments/header :: header">
+            <a href="fragments/header.html">Header</a> fragment will go here
+        </div>
+        
+        <div layout:fragment="content" id="content">
+            CAS content will go here
+        </div>
+
+        <div class="d-flex justify-content-center flex-md-row flex-column w-lg-25">
+            <span id="uh-copyright" class="container-lg py-4 text-center uh-link">
+                Copyright &copy; 2021 Unauthorized access is prohibited by law in accordance with
+                <a href="https://www.hawaii.edu/infotech/policies/hrs708.html"> Chapter 708, Hawai&#699;i Revised Statutes</a>; all use is subject to
+                <a href="https://www.hawaii.edu/infotech/policies/itpolicy.html"> University of Hawai&#699;i Executive Policy E2.210</a>
+            </span>
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
