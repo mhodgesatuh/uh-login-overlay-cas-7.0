@@ -1,11 +1,11 @@
 # Overview
-This is the configuration management repository for the **UH Login** user interface.  It is currently implemented using the CAS Overlay methodology.
+This is the configuration management repository for the **UH Login** user interface. It is currently implemented using the CAS Overlay methodology.
 # Branch Management
 In the event that two configurations are activiely changing at the same time, past configurations are kept in branches so that they can be updated separately.
 
 Branches:
 - main -- the current configuration is in the main branch
-- v6.3 -- example previously deployed configuration
+- v7.0 -- example previously deployed configuration
 # Deployment
 Update the CAS version in gradle.properties and rebuild/redeploy.
 
