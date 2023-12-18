@@ -1,26 +1,19 @@
 /* Root / Reset */
 
+
 :root {
+    --mdc-text-button-label-text-color: #f7f7f7;
+    --mdc-theme-error: darkred;
     --cas-theme-primary: #153e50;
     --cas-theme-primary-bg: rgba(21, 62, 80, 0.2);
+    --cas-theme-button-bg: #26418f;
     --cas-theme-primary-light: #006d85;
     --cas-theme-secondary: #74C163;
     --cas-theme-success: var(--cas-theme-secondary);
     --cas-theme-danger: var(--mdc-theme-error);
     --cas-theme-warning: #e6a210;
     --cas-theme-border-light: 1px solid rgba(0, 0, 0, .2);
-    --cas-theme-twitter-color: #55acee;
-    --cas-theme-vimeo-color: #1ab7ea;
-    --cas-theme-vk-color: #587ea3;
-    --cas-theme-yahoo-color: #720e9e;
-    --cas-theme-google-color: #CC5445;
-    --cas-theme-facebook-color: #3B5998;
-    --atlassian-theme-primary: #0747a6;
     --mdc-theme-primary: var(--cas-theme-primary, #153e50);
-}
-
-.atlassian {
-    --mdc-theme-primary: var(--atlassian-theme-primary, #0747a6);
 }
 
 body {
@@ -30,8 +23,7 @@ body {
     padding: 0;
     flex-direction: column;
     justify-content: space-between;
-    font-family: Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     background: #ddd9c3;
 }
 
@@ -61,9 +53,9 @@ aside, section, main {
 }
 
 .mdc-drawer-app-content {
+    flex: auto;
     overflow: auto;
     position: relative;
-    padding-top: 40px !important;
 }
 
 .main-content {
@@ -74,6 +66,9 @@ aside, section, main {
     z-index: 7;
 }
 
+div#content {
+    box-shadow:1px 1px 3px #888;
+}
 /* widgets */
 
 .notifications-count {
@@ -101,15 +96,20 @@ header>nav .cas-brand .cas-logo {
     height: 100%;
 }
 
-.caps-check:not(.caps-on) .caps-warn, .caps-check:not(.caps-on)+.caps-warn {
+.caps-warn {
     display: none;
+}
+
+.caps-on {
+    display: block;
 }
 
 .login-section {
     border-right: 1px solid rgba(0, 0, 0, .2);
     border-right: var(--cas-theme-border-light, 1px solid rgba(0, 0, 0, .2));
     padding: 2rem 2.5rem;
-    flex: 1;
+    flex: 1 1 auto;
+    /* IE flex fix */
 }
 
 .login-section:last-child {
@@ -126,6 +126,10 @@ header>nav .cas-brand .cas-logo {
     }
 }
 
+.noborder {
+    border: 0 none;
+}
+
 .close {
     font-size: 1.5rem;
     font-weight: 700;
@@ -134,7 +138,6 @@ header>nav .cas-brand .cas-logo {
     text-shadow: 0 1px 0 #fff;
     text-transform: none;
     text-decoration: none;
-    ;
 }
 
 button.close {
@@ -144,11 +147,18 @@ button.close {
 }
 
 .banner {
-    padding: 0.1rem 0.5rem;
     border: 1px solid rgba(0, 0, 0, .2);
     border: var(--cas-theme-border-light, 1px solid rgba(0, 0, 0, .2));
     position: relative;
-    border-radius: 4px;
+    padding-left: 10px;
+    box-shadow:1px 1px 3px #888;
+    border-radius:.5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+.banner>span {
+    vertical-align: top;
 }
 
 .banner .banner-message {
@@ -177,9 +187,21 @@ button.close {
     color: var(--cas-theme-primary, #153e50);
 }
 
+.banner-danger h1:before,
+.banner-danger h2:before,
+.banner-danger h3:before,
+.banner-danger h4:before,
+.banner-danger h5:before {
+    content: "\F0027";
+    font-size: 24px;
+    font: normal normal normal 24px/1 "Material Design Icons";
+}
+
 .banner-danger {
     border-color: #b00020;
     border-color: var(--cas-theme-danger, #b00020);
+    color: #D8000C;
+    background-color: #FFD2D2;
 }
 
 .banner-danger .mdi {
@@ -199,10 +221,20 @@ button.close {
     color: var(--cas-theme-warning, #e6a210);
 }
 
+.banner-success h1:before,
+.banner-success h2:before,
+.banner-success h3:before,
+.banner-success h4:before,
+.banner-success h5:before {
+    content: "\F012D";
+    font-size: 24px;
+    font: normal normal normal 24px/1 "Material Design Icons";
+}
+
 .banner-success {
     border-color: var(--cas-theme-success);
-    color: #153e50;
     color: var(--cas-theme-primary, #153e50);
+    background-color: #b3e7f8;
 }
 
 .banner-dismissible {
@@ -217,6 +249,10 @@ button.close {
     color: inherit;
 }
 
+.login-provider-item {
+    list-style: none;
+}
+
 .login-provider-item .mdc-button .mdi {
     margin-right: 0.375rem;
 }
@@ -228,7 +264,12 @@ button.close {
 }
 
 .cas-footer {
-    font-size: 0.75rem;
+    background-color: var(--mdc-theme-primary, #6200ee);
+    color: whitesmoke;
+}
+
+.cas-footer a {
+    color: deepskyblue;
 }
 
 .cas-footer>* {
@@ -261,7 +302,7 @@ button.close {
 
 .custom-select {
     display: inline-block;
-    min-width: 200px;
+    min-width: 80%;
     height: 56px;
     padding: .375rem 1.75rem .375rem .75rem;
     font-size: 1rem;
@@ -297,8 +338,8 @@ button.close {
 }
 
 .text-danger {
-    color: #b00020;
-    color: var(--cas-theme-danger, #b00020);
+    color: darkred !important;
+    font-size: 125%;
 }
 
 .text-secondary, .text-success {
@@ -325,22 +366,12 @@ button.close {
 
 .mdc-text-field {
     width: 100%;
-    background-color: white;
 }
+
 .mdc-text-field>.mdc-text-field__input, .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--outlined):not(.mdc-text-field--textarea)>.mdc-text-field__input {
     border-color: #153e50;
     border: 1px solid var(--cas-theme-primary, #153e50);
     border-radius: 4px;
-}
-
-.mdc-input-group {
-    display: flex;
-    align-items: stretch;
-}
-
-.mdc-input-group .mdc-input-group-field {
-    flex: 1 1 auto;
-    order: 1;
 }
 
 .mdc-input-group .mdc-input-group-field .mdc-text-field {
@@ -384,38 +415,15 @@ button.close {
     color: var(--cas-theme-primary, #153e50);
 }
 
+.mdc-button--outline:not(:disabled) {
+    background-color: #428bca;
+    border-radius: 12px 4px;
+}
+
 .mdc-button--raised:not(:disabled) {
-    background-color: var(--mdc-theme-primary, #153E50);
-}
-
-.mdc-button--raised.mdc-button-twitter:not(:disabled) {
-    background-color: #55acee;
-    background-color: var(--cas-theme-twitter-color, #55acee);
-}
-
-.mdc-button--raised.mdc-button-vimeo:not(:disabled) {
-    background-color: #1ab7ea;
-    background-color: var(--cas-theme-vimeo-color, #1ab7ea);
-}
-
-.mdc-button--raised.mdc-button-vk:not(:disabled) {
-    background-color: #587ea3;
-    background-color: var(--cas-theme-vk-color, #587ea3);
-}
-
-.mdc-button--raised.mdc-button-yahoo:not(:disabled) {
-    background-color: #720e9e;
-    background-color: var(--cas-theme-yahoo-color, #720e9e);
-}
-
-.mdc-button--raised.mdc-button-google:not(:disabled) {
-    background-color: #CC5445;
-    background-color: var(--cas-theme-google-color, #CC5445);
-}
-
-.mdc-button--raised.mdc-button-facebook:not(:disabled) {
-    background-color: #3B5998;
-    background-color: var(--cas-theme-facebook-color, #3B5998);
+    margin-right: 4px;
+    border-radius: 12px 4px;
+    background-color: var(--cas-theme-primary, #153E50);
 }
 
 .list-unstyled {
@@ -425,6 +433,11 @@ button.close {
 
 .text-center {
     text-align: center;
+}
+
+.pad-0 {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .w-66 {
@@ -476,7 +489,7 @@ button.close {
 }
 
 .mw-100 {
-    max-width: 100%;
+    max-width: 100% !important;
 }
 
 .mh-100 {
@@ -550,7 +563,7 @@ button.close {
     }
 }
 
-.sr-only {
+.visually-hidden {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -561,24 +574,13 @@ button.close {
     border: 0;
 }
 
-.sr-only-focusable:active, .sr-only-focusable:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-}
-
 *, ::after, ::before {
     box-sizing: border-box;
 }
 
 .text-justify {
-text-align: justify;
+    text-align: justify;
 }
-
-/* legacy */
 
 #duo_iframe {
     width: 100%;
@@ -589,48 +591,37 @@ text-align: justify;
     margin: 0;
 }
 
+.dataTables_wrapper {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
 #serviceui {
     background-color: #17a3b844;
     border-radius: 4px;
 }
 
-/* UH Login */
-
-/* content set dynamically from deployment script's internal catalog of environment hosts */
-.uh-not-prod-warning:before {
-    /* target substitution string must match target string in deployment script */
-    content: "UH_NON_PROD_WARNING_CONTENT_ENVIRONMENT_ID";
+#heroimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.uh-not-prod-warning {
-    font-size: 125% !important;
+/* IE flex fix */
+
+#main-content {
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
-/* Override CAS values for the login success table format */
-.mdc-data-table__table {
-    width: 100%;
-    border: 0;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
+/* oddly, the auto right and left margins caused the login form to not be centered in IE */
 
-@media screen and (max-width: 767.99px) {
-    #app-bar {
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-        margin-top: 0px !important;
-    }
-    #uh-seal {
-        width: 48px !important;
-        height: 48px !important;
-        margin-bottom: -40px !important;
-    }
-    #pmlinks {
-        float: right !important;
-        margin-top: -8px !important;
-    }
-    .uh-not-prod-warning {
-        font-size: 90% !important;
+@media all and (min-width: 768px) {
+    .login-section {
+        flex: 1 1 500px;
+        /* according to flexbugs, flex-basis should be explicitly set for IE */
+        /* https://github.com/philipwalton/flexbugs#flexbug-4 */
     }
 }
 
@@ -640,7 +631,22 @@ text-align: justify;
     background-size: contain;
     background-image: url(../images/uh_seal.png);
     background-repeat: no-repeat;
-    margin-top: 25px;
+}
+
+@media (max-width: 350px) {
+    #uh-seal {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.uh-info {
+    vertical-align: top;
+    text-align: right;
+}
+
+.uh-info-row {
+    justify-content: space-between;
 }
 
 .uh-link,
@@ -650,17 +656,17 @@ text-align: justify;
 }
 
 .uh-link a:link {
-    color: #17587b; 
-} 
+    color: #17587b;
+}
 .uh-link a:visited {
     color: #884488;
 }
 
-.uh-link a:hover, 
+.uh-link a:hover,
 .uh-link a:focus {
     text-decoration: underline;
     color: #22729d;
-	transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 #uh-copyright a:link,
@@ -671,35 +677,19 @@ text-align: justify;
     color: #777;
 }
 
-.uh-mdc-card {
-    background-color: #f7f7f7 !important;
-    border: 1px solid #000 !important;
-    border-radius: 0px !important;
-}
-.uh-mdc-text-field_username {
-    border: 1px solid #999 !important;
-    border-radius: 0px !important;
-}
-.uh-mdc-text-field_password {
-    border: 1px solid #999 !important;
-    border-top-left-radius: 8px !important;
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    border-bottom-left-radius: 8px !important;
-}
-
 .uh-button {
     width: 100%;
     height: 56px;
-    background-color: #e1e1e1 !important;
+    border-radius: 4px !important;
+    color: black !important;
     text-transform: capitalize;
-    font-weight: bold;
+    background-color: #e1e1e1 !important;
     font-size: 1.1em;
 }
-.uh-button:hover, 
+.uh-button:hover,
 .uh-button:active,
 .uh-button:focus {
-	background-color: #b6985a !important;
+    background-color: #b6985a !important;
     color: #fff !important;
 }
 
@@ -708,18 +698,25 @@ text-align: justify;
     box-shadow: none !important;
 }
 
-.uh-trailing {
+.mdc-text-field-helper-line {
+    width: 1px;
+}
+
+.mdc-notched-outline__trailing {
     border-radius: 0px !important;
 }
-
-/* Border fixes for Chrome/Edge on Windows */
-.mdc-notched-outline--notched{
-    border-width: 0.5px;
+/* fix for not showing password reveal icon on MSEdge and MSIE */
+.pwd::-ms-reveal,
+.pwd::-ms-clear {
+    display: none;
 }
 
-.mdc-test-field--focused.mdc-notched-outline--notched{
-    border-width: 2px;
+@media (min-width: 1400px) {
+    .container-xxl {
+        max-width: 90%;
+    }
 }
+
 
 /* Contributed IE11 support */
 
@@ -729,47 +726,47 @@ text-align: justify;
 
 @media all and (-ms-high-contrast: none) {
 
-  _:-ms-fullscreen, :root
-  .mdc-drawer-app-content {
-    display: block !important;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-drawer-app-content {
+        display: block !important;
+    }
 
-  _:-ms-fullscreen, :root
-  .uh-mdc-card {
-    display: block !important;
-  }
+    _:-ms-fullscreen, :root
+    .uh-mdc-card {
+        display: block !important;
+    }
 
-  _:-ms-fullscreen, :root
-  .mdc-notched-outline .mdc-floating-label {
-    display: none !important;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-notched-outline .mdc-floating-label {
+        display: none !important;
+    }
 
-  _:-ms-fullscreen, :root
-  .mdc-notched-outline__notch {
-    display: none !important;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-notched-outline__notch {
+        display: none !important;
+    }
 
-  _:-ms-fullscreen, :root
-  .mdc-text-field__input:-ms-input-placeholder {
-    opacity: 1 !important;
-  }
-  
-  _:-ms-fullscreen, :root
-  .mdc-text-field__input::-ms-input-placeholder{
-    opacity: 1 !important;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-text-field__input:-ms-input-placeholder {
+        opacity: 1 !important;
+    }
 
-  _:-ms-fullscreen, :root
-  .mdc-text-field__input::placeholder {
-    opacity: 1 !important;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-text-field__input::-ms-input-placeholder{
+        opacity: 1 !important;
+    }
 
-  .uh-button span {
-    color: #153e50;
-  }
-  
-  .uh-button:hover span,
-  .uh-button:active span{
-    color: #ffffff;
-  }
+    _:-ms-fullscreen, :root
+    .mdc-text-field__input::placeholder {
+        opacity: 1 !important;
+    }
+
+    .uh-button span {
+        color: #153e50;
+    }
+
+    .uh-button:hover span,
+    .uh-button:active span{
+        color: #ffffff;
+    }
 }
