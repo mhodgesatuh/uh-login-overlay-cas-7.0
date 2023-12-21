@@ -25,13 +25,16 @@
                          th:src="@{${#themes.code('cas.hero-banner.file')}}"/>
                 </p>
             </div>
+            <div class="service-ui" th:replace="~{fragments/serviceui :: serviceUI}">
+                <a href="fragments/serviceui.html">service ui fragment</a>
+            </div>
         </div>
 
         <div class="form-wrapper">
 
             <form method="post" id="fm1" th:object="${credential}" action="login">
                 <div id="login-form-controls" th:unless="${loginFormViewable or loginFormEnabled}">
-                    <div id="loginErrorsPanel" class="alert alert-danger banner banner-danger banner-dismissible"
+                    <div id="loginErrorsPanel" class="alert alert-danger banner banner-danger banner-dismissible text-justify"
                          th:if="${#fields.hasErrors('*')}">
                         <p th:each="err : ${#fields.errors('*')}" th:utext="${err + ' '}">Example error</p>
                         <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
@@ -39,16 +42,19 @@
                 </div>
 
                 <div id="login-form-controls" th:if="${loginFormViewable and loginFormEnabled}">
-                    <div class="container mb-4">
-                        <div class="row row-cols-2 uh-info-row">
-                            <div id="uh-seal" class="col"></div>
-                            <div class="col uh-info">
-                                <br />
-                                <span th:utext="#{screen.pm.button.forgotpwd('https://pwd.example.org')}">Forgot your password?</span>                            
-                            </div>
-                        </div>
+                    <div th:if="${existingSingleSignOnSessionAvailable}">
+                        <i class="mdi mdi-alert-decagram fas fa-exclamation-triangle"></i>&nbsp;
+                        <span id="existingSsoMsg" th:if="${registeredService}" class="mdc-button__label"
+                              th:utext="#{screen.welcome.forcedsso(${existingSingleSignOnSessionPrincipal?.id},${registeredService.name})}"/>
+                        <span id="existingSsoMsg" th:unless="${registeredService}" class="mdc-button__label"
+                              th:utext="#{screen.welcome.forcedsso(${existingSingleSignOnSessionPrincipal?.id}, 'CAS')}"/>
                     </div>
-                    <div id="loginErrorsPanel" class="banner banner-danger alert alert-danger banner-dismissible"
+                    <h3 th:unless="${existingSingleSignOnSessionAvailable}" class="text-center">
+                        <i class="mdi mdi-security fas fa-shield-alt"></i>
+                        <span th:utext="#{screen.welcome.instructions}">Enter your Username and Password:</span>
+                    </h3>
+
+                    <div id="loginErrorsPanel" class="banner banner-danger alert alert-danger banner-dismissible text-justify"
                          th:if="${#fields.hasErrors('*')}">
                         <p th:each="err : ${#fields.errors('*')}" th:utext="${err + ' '}">Example error</p>
                         <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
@@ -122,7 +128,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <button id="uh-reveal"
+                                <button
                                     class="reveal-password mdc-button mdc-button--unelevated mdc-input-group-append mdc-icon-button btn btn-primary"
                                     tabindex="-1" type="button">
                                     <i class="mdi mdi-eye reveal-password-icon fas fa-eye"></i>
@@ -347,7 +353,7 @@
                 </span>
             </div>
 
-            <!-- hr th:if="${loginFormViewable and loginFormEnabled}" class="my-4"/ -->
+            <hr th:if="${loginFormViewable and loginFormEnabled}" class="my-4"/>
 
             <span id="webauthnLoginPanel" th:if="${webAuthnPrimaryAuthenticationEnabled}">
                 <script type="text/javascript">
@@ -355,7 +361,7 @@
                 </script>
 
                 <div th:replace="~{fragments/webAuthnLogin :: webAuthnLogin}"/>
-                <dev class="my-4"></div>
+                <hr class="my-4"/>
             </span>
 
 
@@ -385,9 +391,6 @@
             </script>
         </div>
 
-        <span th:if="${loginFormViewable and loginFormEnabled}">
-            <div th:replace="~{fragments/loginsidebar :: loginsidebar}"/>
-        </span>
     </div>
 </main>
 </body>
