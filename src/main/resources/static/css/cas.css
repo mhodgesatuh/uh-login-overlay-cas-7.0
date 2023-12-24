@@ -632,7 +632,9 @@ button.close {
     #uh-seal {
         width: 48px !important;
         height: 48px !important;
+        margin-left: 15px;
         margin-bottom: -40px !important;
+        margin-left: 15px;
     }
     #pmlinks {
         float: right !important;
@@ -650,6 +652,8 @@ button.close {
    #uh-seal {
     width: 120px;
     height: 120px;
+    margin-left: 15px;
+    margin-bottom: 7px;
     background-size: contain;
     background-image: url(../images/uh_seal.png);
     background-repeat: no-repeat;
@@ -665,6 +669,7 @@ button.close {
 .uh-info {
     vertical-align: top;
     text-align: right;
+    margin-right: 15px;
 }
 
 .uh-info-row {
