@@ -1,6 +1,5 @@
 /* Root / Reset */
 
-
 :root {
     --mdc-text-button-label-text-color: #f7f7f7;
     --mdc-theme-error: darkred;
@@ -23,7 +22,8 @@ body {
     padding: 0;
     flex-direction: column;
     justify-content: space-between;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
     background: #ddd9c3;
 }
 
@@ -53,9 +53,9 @@ aside, section, main {
 }
 
 .mdc-drawer-app-content {
-    flex: auto;
     overflow: auto;
     position: relative;
+    padding-top: 40px !important;
 }
 
 .main-content {
@@ -233,6 +233,7 @@ button.close {
 
 .banner-success {
     border-color: var(--cas-theme-success);
+    color: #153e50;
     color: var(--cas-theme-primary, #153e50);
     background-color: #b3e7f8;
 }
@@ -264,12 +265,7 @@ button.close {
 }
 
 .cas-footer {
-    background-color: var(--mdc-theme-primary, #6200ee);
-    color: whitesmoke;
-}
-
-.cas-footer a {
-    color: deepskyblue;
+    font-size: 0.75rem;
 }
 
 .cas-footer>* {
@@ -302,7 +298,7 @@ button.close {
 
 .custom-select {
     display: inline-block;
-    min-width: 80%;
+    min-width: 200px;
     height: 56px;
     padding: .375rem 1.75rem .375rem .75rem;
     font-size: 1rem;
@@ -338,8 +334,8 @@ button.close {
 }
 
 .text-danger {
-    color: darkred !important;
-    font-size: 125%;
+    color: #b00020;
+    color: var(--cas-theme-danger, #b00020);
 }
 
 .text-secondary, .text-success {
@@ -366,6 +362,7 @@ button.close {
 
 .mdc-text-field {
     width: 100%;
+    background-color: white;
 }
 
 .mdc-text-field>.mdc-text-field__input, .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--outlined):not(.mdc-text-field--textarea)>.mdc-text-field__input {
@@ -606,26 +603,43 @@ button.close {
     border-radius: 4px;
 }
 
-#heroimg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/* UH Login */
+
+/* content set dynamically from deployment script's internal catalog of environment hosts */
+.uh-not-prod-warning:before {
+    /* target substitution string must match target string in deployment script */
+    content: "UH_NON_PROD_WARNING_CONTENT_ENVIRONMENT_ID";
 }
 
-/* IE flex fix */
-
-#main-content {
-    margin-right: 10px;
-    margin-left: 10px;
+.uh-not-prod-warning {
+    font-size: 125% !important;
 }
 
-/* oddly, the auto right and left margins caused the login form to not be centered in IE */
+/* Override CAS values for the login success table format */
+.mdc-data-table__table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
 
-@media all and (min-width: 768px) {
-    .login-section {
-        flex: 1 1 500px;
-        /* according to flexbugs, flex-basis should be explicitly set for IE */
-        /* https://github.com/philipwalton/flexbugs#flexbug-4 */
+@media screen and (max-width: 767.99px) {
+    #app-bar {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        margin-top: 0px !important;
+    }
+    #uh-seal {
+        width: 48px !important;
+        height: 48px !important;
+        margin-bottom: -40px !important;
+    }
+    #pmlinks {
+        float: right !important;
+        margin-top: -8px !important;
+    }
+    .uh-not-prod-warning {
+        font-size: 90% !important;
     }
 }
 
@@ -683,6 +697,23 @@ button.close {
 }
 #uh-copyright a:visited {
     color: #777;
+}
+
+.uh-mdc-card {
+    background-color: #f7f7f7 !important;
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+}
+.uh-mdc-text-field_username {
+    border: 1px solid #999 !important;
+    border-radius: 0px !important;
+}
+.uh-mdc-text-field_password {
+    border: 1px solid #999 !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 8px !important;
 }
 
 .uh-button {
