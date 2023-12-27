@@ -42,6 +42,13 @@
                 </div>
 
                 <div id="login-form-controls" th:if="${loginFormViewable and loginFormEnabled}">
+                    <div class="row row-cols-2 uh-info-row">
+                        <div id="uh-seal" class="col"></div>
+                        <div class="col uh-info">
+                            <br />
+                            <span th:utext="#{screen.pm.button.forgotpwd('https://pwd.example.org')}">Forgot your password?</span>                            
+                        </div>
+                    </div>
                     <div th:if="${existingSingleSignOnSessionAvailable}">
                         <i class="mdi mdi-alert-decagram fas fa-exclamation-triangle"></i>&nbsp;
                         <span id="existingSsoMsg" th:if="${registeredService}" class="mdc-button__label"
