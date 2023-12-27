@@ -3,17 +3,11 @@ Apereo CAS WAR Overlay Template
 
 WAR Overlay Type: `cas-overlay`
 
-# UH Non-Prod Warning Message
-Set the following in messages.properties to true or false.
-```bash
-    uh.login.nonprod.warning=true
-```
-
 # Versions
    
 
 - CAS Server `7.0.0-SNAPSHOT`
-- JDK `17`
+- JDK `21`
                      
 # Build
 
