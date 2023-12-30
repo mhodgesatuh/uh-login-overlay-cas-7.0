@@ -696,11 +696,9 @@ button.close {
 }
 
 #uh-copyright a:link,
-#uh-copyright a:hover {
-    color: #000;
-}
+#uh-copyright a:hover,
 #uh-copyright a:visited {
-    color: #777;
+    color: #000;
 }
 
 .uh-mdc-card {
