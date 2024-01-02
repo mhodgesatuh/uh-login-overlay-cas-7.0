@@ -612,7 +612,8 @@ button.close {
 }
 
 .uh-not-prod-warning {
-    font-size: 125% !important;
+    font-size: 125%;
+    text-align: center;
 }
 
 /* Override CAS values for the login success table format */
