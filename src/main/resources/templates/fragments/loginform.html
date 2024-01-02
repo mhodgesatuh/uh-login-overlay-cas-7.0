@@ -17,19 +17,6 @@
          th:with="loginFormEnabled=${#strings.defaultString(#themes.code('cas.login-form.enabled'), 'true') == 'true'},
                 loginFormViewable=${@casThymeleafTemplatesDirector.isLoginFormViewable(#vars)}">
 
-        <div th:if="${delegatedAuthenticationProviderPrimary == null}">
-            <div th:if="${!#strings.isEmpty(#themes.code('cas.hero-banner.file'))}">
-                <p>
-                    <img id="heroimg"
-                         th:title="${#strings.defaultString(#themes.code('cas.theme.name'), 'CAS')}"
-                         th:src="@{${#themes.code('cas.hero-banner.file')}}"/>
-                </p>
-            </div>
-            <div class="service-ui" th:replace="~{fragments/serviceui :: serviceUI}">
-                <a href="fragments/serviceui.html">service ui fragment</a>
-            </div>
-        </div>
-
         <div class="form-wrapper">
 
             <form method="post" id="fm1" th:object="${credential}" action="login">
