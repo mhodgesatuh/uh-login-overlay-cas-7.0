@@ -624,32 +624,7 @@ button.close {
     table-layout: fixed;
 }
 
-@media screen and (max-width: 767.99px) {
-    #app-bar {
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-        margin-top: 0px !important;
-    }
-    #uh-seal {
-        width: 48px !important;
-        height: 48px !important;
-        margin-left: 15px;
-        margin-bottom: -40px !important;
-    }
-    #pmlinks {
-        float: right !important;
-        margin-top: -8px !important;
-    }
-    .uh-not-prod-warning {
-        font-size: 90% !important;
-    }
-}
-
-/* flex-basis: auto works in IE with the column view,
-     but a specific value needs to be set for row view
-   */
-
-   #uh-seal {
+#uh-seal {
     width: 120px;
     height: 120px;
     margin-left: 15px;
@@ -657,13 +632,6 @@ button.close {
     background-size: contain;
     background-image: url(../images/uh_seal.png);
     background-repeat: no-repeat;
-}
-
-@media (max-width: 350px) {
-    #uh-seal {
-        width: 60px;
-        height: 60px;
-    }
 }
 
 .uh-info {
@@ -751,6 +719,30 @@ button.close {
 .pwd::-ms-reveal,
 .pwd::-ms-clear {
     display: none;
+}
+
+@media screen and (max-width: 767.99px) {
+    .uh-not-prod-warning {
+        font-size: 90%;
+    }  
+    #app-bar {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+    }
+    #uh-seal {
+        width: 48px;
+        height: 48px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #pmlinks {
+        float: right !important;
+        margin-top: -8px !important;
+    }  
+    .mdc-button--raised:not(:disabled, .reveal-password) {
+        margin-bottom: 10px;
+    }
 }
 
 @media (min-width: 1400px) {
