@@ -35,7 +35,7 @@ buildscript {
         classpath "io.spring.gradle:dependency-management-plugin:${project.gradleDependencyManagementPluginVersion}"
         classpath "com.google.cloud.tools:jib-gradle-plugin:${project.jibVersion}"
         classpath "com.bmuschko:gradle-docker-plugin:${project.gradleDockerPluginVersion}"
-        classpath "org.openrewrite:plugin:${project.gradleOpenRewritePluginVersion}"
+
         classpath "de.undercouch:gradle-download-task:${project.gradleDownloadTaskVersion}"
         classpath "org.apereo.cas:cas-server-core-api-configuration-model:${project.'cas.version'}"
         classpath "org.apereo.cas:cas-server-core-configuration-metadata-repository:${project.'cas.version'}"
@@ -75,13 +75,6 @@ repositories {
         url "https://repo.spring.io/milestone"
         mavenContent { releasesOnly() }
     }
-    maven {
-        url "https://jitpack.io"
-        content {
-            includeGroupByRegex ".*wss4j.*"
-        }
-        mavenContent { releasesOnly() }
-    }
 }
 
 
@@ -91,7 +84,7 @@ apply plugin: "war"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.freefair.lombok"
 
-apply plugin: "org.openrewrite.rewrite"
+
 apply from: rootProject.file("gradle/springboot.gradle")
 apply plugin: "com.google.cloud.tools.jib"
 apply plugin: "com.bmuschko.docker-remote-api"
@@ -140,16 +133,6 @@ java {
 
 bootBuildImage {
     imageName = "${project.'containerImageOrg'}/${project.'containerImageName'}:${project.version}"
-}
-
-rewrite {
-    def activeRecipe = providers.systemProperty("activeRecipe").getOrNull()
-    if (activeRecipe != null) {
-        def file = project.getRootProject().file("openrewrite/${activeRecipe}.yml")
-        def out = services.get(StyledTextOutputFactory).create("cas")
-        out.withStyle(Style.Success).println("Activating recipe ${file}")
-        configFile = file
-    }
 }
 
 
@@ -269,13 +252,13 @@ tasks.register("casPushDockerImage", DockerPushImage) {
 dependencies {
     /**
     * Do NOT modify the lines below or else you will risk breaking dependency management.
-    */
+    **/
     implementation enforcedPlatform("org.apereo.cas:cas-server-support-bom:${project.'cas.version'}")
     implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
 
     /**
      * Do NOT modify the lines below or else you will risk breaking the build.
-     */
+     **/
     implementation "org.apereo.cas:cas-server-core-api-configuration-model"
     implementation "org.apereo.cas:cas-server-webapp-init"
 
@@ -314,16 +297,6 @@ dependencies {
     implementation "org.apereo.cas:cas-server-support-hazelcast-monitor"
     // login failure throttling
     implementation "org.apereo.cas:cas-server-support-throttle"
- 
-    if (project.hasProperty("casModules")) {
-        def dependencies = project.getProperty("casModules").split(",")
-        dependencies.each {
-            def projectsToAdd = rootProject.subprojects.findAll {project ->
-                project.name == "cas-server-core-${it}" || project.name == "cas-server-support-${it}"
-            }
-            projectsToAdd.each {implementation it}
-        }
-    }
     
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
