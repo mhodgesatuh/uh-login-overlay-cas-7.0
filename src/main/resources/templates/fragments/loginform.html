@@ -36,13 +36,6 @@
                             <span th:utext="#{screen.pm.button.forgotpwd('https://pwd.example.org')}">Forgot your password?</span>                            
                         </div>
                     </div>
-                    <div th:if="${existingSingleSignOnSessionAvailable}">
-                        <i class="mdi mdi-alert-decagram fas fa-exclamation-triangle"></i>&nbsp;
-                        <span id="existingSsoMsg" th:if="${registeredService}" class="mdc-button__label"
-                              th:utext="#{screen.welcome.forcedsso(${existingSingleSignOnSessionPrincipal?.id},${registeredService.name})}"/>
-                        <span id="existingSsoMsg" th:unless="${registeredService}" class="mdc-button__label"
-                              th:utext="#{screen.welcome.forcedsso(${existingSingleSignOnSessionPrincipal?.id}, 'CAS')}"/>
-                    </div>
 
                     <div id="loginErrorsPanel" class="banner banner-danger alert alert-danger banner-dismissible text-justify"
                          th:if="${#fields.hasErrors('*')}">
